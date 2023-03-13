@@ -1,3 +1,5 @@
+import { ajoutListenersAvis } from "./avis.js";
+
 // Récupération des pièces depuis le fichier JSON
 const reponse = await fetch('pieces-autos.json');
 const pieces = await reponse.json();
@@ -25,7 +27,7 @@ sectionFiches.appendChild(descriptionElement);
 sectionFiches.appendChild(disponibiliteElement);*/
 
  // article.prix < 35 ? "$" : "$$$"; pour faire un choix entre 2 possibilité
- function genererList(pieces){
+function genererList(pieces){
     for (let i = 0; i < pieces.length; i++) {
 
         // Récupération de l'élément du DOM qui accueillera les fiches
@@ -47,21 +49,27 @@ sectionFiches.appendChild(disponibiliteElement);*/
         descriptionElement.innerText = pieces[i].description ?? "Pas de description pour le moment";
         const disponibiliteElement = document.createElement("p");
         disponibiliteElement.innerText = pieces[i].disponibilite ? "En stock" : "Rupture de stock";
+         //Code ajouté
+         const avisBouton = document.createElement("button");
+         avisBouton.dataset.id = pieces[i].id;
+         avisBouton.textContent = "Afficher les avis";
         
         // On rattache la balise article à la section Fiches
         sectionFiches.appendChild(pieceElement);
         // On rattache l’image à pieceElement (la balise article)
         pieceElement.appendChild(imageElement);
         // Idem pour le nom, le prix et la catégorie...
-            sectionFiches.appendChild(nomElement);
-            sectionFiches.appendChild(prixElement);
-            sectionFiches.appendChild(categorieElement);
-            sectionFiches.appendChild(descriptionElement);
-            sectionFiches.appendChild(disponibiliteElement);
-        }
-        
- }
- genererList(pieces);
+        sectionFiches.appendChild(nomElement);
+        sectionFiches.appendChild(prixElement);
+        sectionFiches.appendChild(categorieElement);
+        sectionFiches.appendChild(descriptionElement);
+        sectionFiches.appendChild(disponibiliteElement);
+            //Code aJouté
+        pieceElement.appendChild(avisBouton);
+    }
+    ajoutListenersAvis();      
+}
+genererList(pieces);
 const boutonTrier = document.querySelector(".btn-trier");
 // Triage
 boutonTrier.addEventListener("click", function () {
