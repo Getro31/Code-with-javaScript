@@ -139,4 +139,13 @@ for(let i=0; i < noms.length ; i++){
 // Ajout de l'en-tête puis de la liste au bloc résultats filtres
 const sectionElements = document.querySelector('.abordables');
 sectionElements.appendChild(abordablesElements);
+//Filtre avec un inputRange
+const prix_max = document.querySelector("#prix_max")
+prix_max.addEventListener('input', function(){
+    const piecesFiltrees = pieces.filter(function (piece) {
+        return piece.prix <= prix_max.value;
+    });
+    document.querySelector(".fiches").innerHTML = '';
+    genererList(piecesFiltrees);
+});
 

@@ -36,12 +36,18 @@ main {
 	margin: 8px;
 	padding: 8px;
 	min-width: 300px;
+	width: 30%;
 	min-height: 400px;
 }
 .filtres h3 {
 	text-align: center;
 }
-
+.filtres button{
+	width: 100%;
+	padding: 8px;
+	margin: 2px auto;
+	font-size: 1rem;
+}
 .fiches {
 	flex: 1;
 	margin: 8px;
