@@ -76,3 +76,27 @@ boutonFiltrer.addEventListener("click", function () {
        return piece.prix <= 35;
    });
  });
+// fonction map pour acceder a un attribut d'un objet 
+const noms = pieces.map(piece => piece.nom);
+
+//fonction splice pour supprimer des elements indésirable d'un liste
+//on utilis la boucle "for" pour parcourir la liste
+
+for(let i = pieces.length -1 ; i >= 0; i--){
+   if(pieces[i].prix > 35){
+       noms.splice(i,1)
+   }
+}
+console.log(noms)
+//Affichage de la liste d'elements restant 
+//Création de la liste
+const abordablesElements = document.createElement('ul');
+//Ajout de chaque nom à la liste
+for(let i=0; i < noms.length ; i++){
+   const nomElement = document.createElement('li');
+   nomElement.innerText = noms[i];
+   abordablesElements.appendChild(nomElement)
+}
+// Ajout de l'en-tête puis de la liste au bloc résultats filtres
+const sectionElements = document.querySelector('.abordables');
+sectionElements.appendChild(abordablesElements);
