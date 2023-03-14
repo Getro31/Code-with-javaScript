@@ -1,8 +1,10 @@
-import { ajoutListenersAvis } from "./avis.js";
+import { ajoutListenersAvis, ajoutListenerEnvoyerAvis } from "./avis.js";
 
 // Récupération des pièces depuis le fichier JSON
-const reponse = await fetch('pieces-autos.json');
+const reponse = await fetch('http://localhost:8081/pieces/');
 const pieces = await reponse.json();
+
+ajoutListenerEnvoyerAvis();
 //creation des elements 
 /*const article = pieces[0];
 const imageElement = document.createElement("img");
